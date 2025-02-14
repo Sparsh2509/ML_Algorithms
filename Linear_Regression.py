@@ -10,6 +10,7 @@ data = {
 }
 
 df = pd.DataFrame(data)
+print(df)
 
 X = df[['Size']]  
 y = df['Price']  
@@ -36,10 +37,9 @@ print(f"Coefficients: {model.coef_}")
 print(f"Intercept: {model.intercept_}")
 
 # Plotting the Actual vs Predicted prices for the test set (using Size as the x-axis)
-plt.scatter(X_test['Size'], y_test, color='blue', label='Actual Price')
-plt.scatter(X_test['Size'], y_pred, color='red', label='Predicted Price')
+plt.scatter(X_test, y_test, color='blue', label='Actual Price')
+plt.scatter(X_test, y_pred, color='red', label='Predicted Price')
 plt.xlabel('Size (sq ft)')
 plt.ylabel('Price')
 plt.title('Linear Regression: Actual vs Predicted')
-plt.legend()
 plt.show()
