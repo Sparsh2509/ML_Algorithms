@@ -12,6 +12,7 @@ data = {
 }
 
 df = pd.DataFrame(data)
+print(df)
 
 X = df[['Size', 'Bedrooms', 'Age']]  
 y = df['Price']  
