@@ -70,7 +70,7 @@ regression.fit(X_train,y_train)
 mse=cross_val_score(regression,X_train,y_train,scoring='neg_mean_squared_error',cv=10)
 print(mse)
 # ṃean of mse
-mean=np.mean(mse)
+mean=-(np.mean(mse))
 print(mean)
 
 ##prediction 
@@ -78,19 +78,19 @@ reg_pred=regression.predict(X_test)
 print(reg_pred)
 
 
-# score=r2_score(reg_pred,y_test)
-# print(score)
+score=r2_score(reg_pred,y_test)
+print(score)
 
 # To improve r2 i used pipeline
-pipeline = Pipeline([
-    ('scaler', StandardScaler()),
-    ('model', LinearRegression())
-])
-# Helps to train the model 
-pipeline.fit(X_train, y_train)
-y_pred_scaled = pipeline.predict(X_test)
-r2_scaled = r2_score(y_test, y_pred_scaled)
-print(f"Scaled Linear Regression R²: {r2_scaled:.4f}")
+# pipeline = Pipeline([
+#     ('scaler', StandardScaler()),
+#     ('model', LinearRegression())
+# ])
+# # Helps to train the model 
+# pipeline.fit(X_train, y_train)
+# y_pred_scaled = pipeline.predict(X_test)
+# r2_scaled = r2_score(y_test, y_pred_scaled)
+# print(f"Scaled Linear Regression R²: {r2_scaled:.4f}")
 
 import seaborn as sns
 graph=sns.displot(reg_pred-y_test,kind='kde')

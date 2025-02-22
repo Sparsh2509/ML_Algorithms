@@ -70,7 +70,7 @@ regression.fit(X_train,y_train)
 mse=cross_val_score(regression,X_train,y_train,scoring='neg_mean_squared_error',cv=10)
 print(mse)
 # ṃean of mse
-mean=np.mean(mse)
+mean=-(np.mean(mse))
 print(mean)
 
 ##prediction 
@@ -78,38 +78,67 @@ reg_pred=regression.predict(X_test)
 print(reg_pred)
 
 
-# score=r2_score(reg_pred,y_test)
-# print(score)
+score=r2_score(reg_pred,y_test)
+print(score)
 
 # To improve r2 i used pipeline
-pipeline = Pipeline([
-    ('scaler', StandardScaler()),
-    ('model', LinearRegression())
-])
-# Helps to train the model 
-pipeline.fit(X_train, y_train)
-y_pred_scaled = pipeline.predict(X_test)
-r2_scaled = r2_score(y_test, y_pred_scaled)
-print(f"Scaled Linear Regression R²: {r2_scaled:.4f}")
+# pipeline = Pipeline([
+#     ('scaler', StandardScaler()),
+#     ('model', LinearRegression())
+# ])
+# # Helps to train the model 
+# pipeline.fit(X_train, y_train)
+# y_pred_scaled = pipeline.predict(X_test)
+# r2_scaled = r2_score(y_test, y_pred_scaled)
+# print(f"Scaled Linear Regression R²: {r2_scaled:.4f}")
 
-import seaborn as sns
-graph=sns.displot(reg_pred-y_test,kind='kde')
-print(graph)
-plt.show()
+# import seaborn as sns
+# graph=sns.displot(reg_pred-y_test,kind='kde')
+# print(graph)
+# plt.show()
+
+# residuals = y_test - reg_pred
+
+# sns.histplot(residuals, bins=30, kde=True)
+# plt.axvline(0, color='red', linestyle='dashed')  # Show zero-error line
+# plt.xlabel("Residuals")
+# plt.ylabel("Frequency")
+# plt.title("Residual Distribution")
+# plt.show()
 
 
-# Ridge Regression 
+#### Ridge Regression  
+# To remove overfitting 
+
 from sklearn.linear_model import Ridge
+
+# For hyperparameter tuning of alpha(lambda)
 from sklearn.model_selection import GridSearchCV
+
+# Initialize the Ridge Regression model
 ridge_regressor=Ridge()
-ridge_regressor
+
+# Testing different values in alpha to see which provides better solution 
 parameters={'alpha':[1,2,5,10,20,30,40,50,60,70,80,90]}
+
 ridgecv=GridSearchCV(ridge_regressor,parameters,scoring='neg_mean_squared_error',cv=5)
+print(ridgecv)
 ridgecv.fit(X_train,y_train)
+
+# Return best alpha value
 print(ridgecv.best_params_)
+
+# Return best mse 
 print(ridgecv.best_score_)
+
+# Make prediction on X_test
 ridge_pred=ridgecv.predict(X_test)
+print(ridge_pred)
+
+
 import seaborn as sns
-sns.displot(ridge_pred-y_test,kind='kde')
+graph= sns.displot(ridge_pred-y_test,kind='kde')
+print(graph)
 score=r2_score(ridge_pred,y_test)
-score
+print(score)
+plt.show()
