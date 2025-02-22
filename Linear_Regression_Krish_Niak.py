@@ -97,3 +97,6 @@ graph=sns.displot(reg_pred-y_test,kind='kde')
 print(graph)
 plt.show()
 
+
+
+

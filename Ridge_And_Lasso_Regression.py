@@ -4,8 +4,9 @@ import pandas as pd
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
-from sklearn.pipeline import Pipeline
+# from sklearn.pipeline import Pipeline
 from sklearn.metrics import r2_score
+import seaborn as sns
 
 # Storing dataset into df
 df=fetch_california_housing()
@@ -92,7 +93,6 @@ print(score)
 # r2_scaled = r2_score(y_test, y_pred_scaled)
 # print(f"Scaled Linear Regression R²: {r2_scaled:.4f}")
 
-# import seaborn as sns
 # graph=sns.displot(reg_pred-y_test,kind='kde')
 # print(graph)
 # plt.show()
@@ -135,10 +135,26 @@ print(ridgecv.best_score_)
 ridge_pred=ridgecv.predict(X_test)
 print(ridge_pred)
 
+# graph= sns.displot(ridge_pred-y_test,kind='kde')
+# print(graph)
+# score=r2_score(ridge_pred,y_test)
+# print(score)
+# plt.show()
 
-import seaborn as sns
-graph= sns.displot(ridge_pred-y_test,kind='kde')
-print(graph)
-score=r2_score(ridge_pred,y_test)
+
+#### Lasso Regression 
+# Used for automatically feature selection 
+
+from sklearn.linear_model import Lasso
+lasso=Lasso()
+parameters={'alpha':[1,2,5,10,20,30,40,50,60,70,80,90]}
+lassocv=GridSearchCV(lasso,parameters,scoring='neg_mean_squared_error',cv=5)
+print(lassocv)
+lassocv.fit(X_train,y_train)
+print(lassocv.best_params_)
+print(lassocv.best_score_)
+lasso_pred=lassocv.predict(X_test)
+score=r2_score(lasso_pred,y_test)
 print(score)
+sns.displot(lasso_pred-y_test,kind='kde')
 plt.show()
