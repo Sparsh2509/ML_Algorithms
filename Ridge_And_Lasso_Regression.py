@@ -79,7 +79,7 @@ reg_pred=regression.predict(X_test)
 print(reg_pred)
 
 
-score=r2_score(reg_pred,y_test)
+score=r2_score(y_test,reg_pred)
 print(score)
 
 # To improve r2 i used pipeline
@@ -135,11 +135,11 @@ print(ridgecv.best_score_)
 ridge_pred=ridgecv.predict(X_test)
 print(ridge_pred)
 
-# graph= sns.displot(ridge_pred-y_test,kind='kde')
-# print(graph)
-# score=r2_score(ridge_pred,y_test)
-# print(score)
-# plt.show()
+graph= sns.displot(ridge_pred-y_test,kind='kde')
+print(graph)
+score=r2_score(y_test,reg_pred)
+print(score)
+plt.show()
 
 
 #### Lasso Regression 
@@ -154,7 +154,7 @@ lassocv.fit(X_train,y_train)
 print(lassocv.best_params_)
 print(lassocv.best_score_)
 lasso_pred=lassocv.predict(X_test)
-score=r2_score(lasso_pred,y_test)
+score=r2_score(y_test,lasso_pred)
 print(score)
 sns.displot(lasso_pred-y_test,kind='kde')
-plt.show()
+# plt.show()

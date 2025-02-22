@@ -78,7 +78,7 @@ reg_pred=regression.predict(X_test)
 print(reg_pred)
 
 
-score=r2_score(reg_pred,y_test)
+score=r2_score(y_test,reg_pred)
 print(score)
 
 # To improve r2 i used pipeline
