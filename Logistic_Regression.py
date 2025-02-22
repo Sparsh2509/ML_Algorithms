@@ -77,7 +77,7 @@ print(classification_report(y_pred,y_test))
 ##EDA
 # capture from df and hue contain category 
 a=sns.pairplot(df,hue='species')
-# checking correlation if correction is postive that means accuracy is high
+# checking correlation if correlation is postive that means accuracy is high
 b=df.corr()
 print(a)
 print(b)
