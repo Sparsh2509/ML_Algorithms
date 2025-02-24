@@ -4,3 +4,5 @@
 # Logistic_Regression
 # Ridge_And_Lasso_Regression
 # Polynomial Regression
+# SVM Regression
+# SVM Classifier
