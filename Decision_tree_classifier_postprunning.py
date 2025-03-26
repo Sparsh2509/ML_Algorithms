@@ -45,7 +45,7 @@ print(X_train)
 
 
 #isme 2nd level par he model ruk jayega  
-# score 0.98
+# score
 treemodel=DecisionTreeClassifier(max_depth= 2) 
 treemodel.fit(X_train,y_train)
  
