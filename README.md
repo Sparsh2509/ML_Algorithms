@@ -6,3 +6,7 @@
 # Polynomial Regression
 # SVM Regression
 # SVM Classifier
+# Decision_Tree_Classifier
+# Decision_Tree_Classifier_Postprunning
+# Decision_Tree_Classifier_Preprunning
+# Decision_Tree_Regressor
