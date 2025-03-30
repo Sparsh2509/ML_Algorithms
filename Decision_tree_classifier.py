@@ -47,9 +47,6 @@ print(X_train)
 # score = 0.96
 # treemodel=DecisionTreeClassifier() 
 
-
-#isme 2nd level par he model ruk jayega  
-# score
 treemodel=DecisionTreeClassifier(criterion='gini', splitter='best', max_depth=6, min_samples_leaf=4) 
 treemodel.fit(X_train,y_train)
  

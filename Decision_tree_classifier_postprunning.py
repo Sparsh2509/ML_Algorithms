@@ -41,11 +41,11 @@ print(X_train)
 
 # post prunning without max_depth
 # score = 0.96
-# treemodel=DecisionTreeClassifier() 
+######treemodel=DecisionTreeClassifier() 
 
 
 #isme 2nd level par he model ruk jayega  
-# score
+# score 0.98
 treemodel=DecisionTreeClassifier(max_depth= 2) 
 treemodel.fit(X_train,y_train)
  
