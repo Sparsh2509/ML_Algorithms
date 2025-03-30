@@ -3,7 +3,7 @@ import matplotlib.pyplot as plt
 from sklearn.datasets import load_iris
 import seaborn as sns
 from sklearn.model_selection import train_test_split
-from sklearn.tree import DecisionTreeClassifier
+from sklearn.tree import DecisionTreeClassifier , plot_tree
 
 iris=load_iris()
 
@@ -49,9 +49,10 @@ print(X_train)
 treemodel=DecisionTreeClassifier(max_depth= 2) 
 treemodel.fit(X_train,y_train)
  
-from sklearn import tree
+# Plotting decision tree
+
 plt.figure(figsize=(15,10))
-tree.plot_tree(treemodel,filled=True)
+plot_tree(treemodel,filled=True)
 plt.show()
 
 y_pred= treemodel.predict(X_test)
