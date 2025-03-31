@@ -21,6 +21,7 @@ param_grid = {
 
 #Score 1.000
 # random_classifier = RandomForestClassifier(n_estimators=10, max_depth=4, random_state=42)
+# random_classifier.fit(X_train, y_train)
 
 # Score 1.000
 grid_search = GridSearchCV(RandomForestClassifier(random_state=42), param_grid, cv=5, n_jobs=-1, verbose=1)
